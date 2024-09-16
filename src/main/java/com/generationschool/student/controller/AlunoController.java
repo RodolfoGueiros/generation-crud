@@ -13,13 +13,13 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/alunos")
 @RequiredArgsConstructor
 public class AlunoController {
 
     private final AlunoService alunoService;
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/alunos/{id}")
     public ResponseEntity<ResponseAlunoDTO> findById(@PathVariable(name = "id") Long id) {
         return ResponseEntity.ok().body(alunoService.findById(id));
     }
@@ -39,12 +39,12 @@ public class AlunoController {
         return ResponseEntity.created(uri).body(responseAlunoDTO);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/alunos/{id}")
     public ResponseEntity<ResponseAlunoDTO> update(@RequestBody RequestAlunoDTO alunoDTO, @PathVariable(name = "id") Long id) {
         return ResponseEntity.ok().body(alunoService.update(id, alunoDTO));
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/alunos/{id}")
     public ResponseEntity<String> delete(@PathVariable(value = "id") Long id) {
         return ResponseEntity.ok().body(alunoService.delete(id));
     }
